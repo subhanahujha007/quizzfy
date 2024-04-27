@@ -1,6 +1,7 @@
 "use client"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
+import ProgressBar from "@/components/ui/ProgressBar"
 export default function page(){
     const questions=[
         {
@@ -71,6 +72,9 @@ if(currentquestion  < questions.length -1){
 }
             }
  return(<div className="flex flex-col flex-1">
+    <header className="position-sticky top-0 z-10  shadow-md py-4 w-full">
+        <ProgressBar value={(currentquestion/questions.length)*100} />
+    </header>
  {!start ?<h1>Welcome to the quizz page</h1>:(
     <div className="flex  flex-col flex-1 gap-3">
         <h1>{questions[currentquestion].QuestionText}</h1>
