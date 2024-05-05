@@ -1,11 +1,11 @@
 "use client"
 import { Button } from "@/components/ui/button"
-import { useState } from "react"
-import { Quizsubmission } from "./quizsubmission"
+import { JSXElementConstructor, PromiseLikeOfReactNode, ReactElement, ReactNode, ReactPortal, useState } from "react"
+import { Quizsubmission } from "./Quizsubmission"
 import ProgressBar from "@/components/ui/ProgressBar"
 import {ChevronLeft,X} from "lucide-react"
 export default function page(){
-    const questions=[
+    const questions:any=[
         {
             QuestionText:"what is React",
             answers:[
@@ -52,6 +52,24 @@ export default function page(){
                 {
                     answerstext:"A Dom",
                     isCorrect:"false",id:1
+                },  {
+                    answerstext:"A middleware",
+                    isCorrect:"false",id:1
+                } , {
+                    answerstext:"A backend testing software",
+                    isCorrect:"false",id:1
+                }
+            ]
+        },{
+            QuestionText:"what is OOPS",
+            answers:[
+                {
+                    answerstext:"it means Oh teri!!!",
+                    isCorrect:"false",id:1
+                },
+                {
+                    answerstext:"object oriented programming system",
+                    isCorrect:"true",id:1
                 },  {
                     answerstext:"A middleware",
                     isCorrect:"false",id:1
@@ -110,7 +128,7 @@ if(submit){
         <h1>{questions[currentquestion].QuestionText}</h1>
       {
         questions[currentquestion].answers.map(
-            answer=>{return(
+            (            answer: { answerstext: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | PromiseLikeOfReactNode | null | undefined })=>{return(
                 <Button variant={"secondary"} onClick={()=> handleanswer(answer)}>
                 
                         {answer.answerstext}
@@ -121,8 +139,17 @@ if(submit){
     </div>
  )}
  <footer>
-    
- <p>{iscorrect==null ? "" :( iscorrect == true ? "correct" :"incorrect")}</p>
+ <p style={{
+  borderColor: iscorrect==null ? "":(iscorrect ? 'green' : 'red'),
+  borderWidth: iscorrect==null ? "":(iscorrect ? '2px' : '2px'),
+  borderStyle: 'solid',
+  borderRadius: '5px',
+  padding:'1rem',
+  marginBottom:'10px'
+}}> 
+  {iscorrect == null ? "" : (iscorrect ? `Congratulations your answer is CORRECT` : `its INCORRECT the correct answer is ${   questions[currentquestion].answers.find((answer: { isCorrect: string }) => answer.isCorrect === 'true').answerstext} `)}
+</p>
+
  <Button onClick={handleclick}>
     {!start ? 'Start' : (currentquestion === questions.length-1 ? 'Submit' : 'Next')}
  </Button>
