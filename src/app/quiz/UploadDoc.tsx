@@ -5,21 +5,24 @@ import { useState } from "react"
 const UploadDoc = () => {
     const [document ,setdocument]=useState<File | null | Blob | undefined>(null)
     const [loading,setloading]=useState<Boolean>(false)
-  const handlesubmit=async(e:React.FormEvent<HTMLFormElement>)=>{
-e.preventDefault()
-console.log(document)
-setloading(true)
-  }
+
+    const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        console.log(document)
+        setloading(true)
+    }
+
     return (
-    <div className="w-full">
-        <form className="w-full" onSubmit={handlesubmit}>
-            <label htmlFor="Document" className="bg-secondary w-full flex h-20 rounded-md border-4 border-dashed border-blue-900 relative ">
-               <div className="absolute m-auto insert-0 flex justify-center items-center">{"Drag a File"}</div> <input type="file" id="document" className="relative block w-full h-full z-50 opacity-0 " onChange={(e)=>setdocument(e?.target?.files?.[0])} />
-            </label>
-        </form>
-        <Button type="submit" className="mt-10">Genrate Quizz!!</Button>
-    </div>
-  )
+        <div className="w-full">
+            <form className="w-full" onSubmit={handleSubmit}>
+                <label htmlFor="Document" className="bg-secondary w-full flex h-20 rounded-md border-4 border-dashed border-blue-900 relative ">
+                    <div className="absolute m-auto insert-0 flex justify-center items-center">{"Drag a File"}</div> 
+                    <input type="file" id="document" className="relative block w-full h-full z-50 opacity-0 " onChange={(e)=>setdocument(e?.target?.files?.[0])} />
+                </label>
+                <Button type="submit" className="mt-10">Generate Quiz!!</Button>
+            </form>
+        </div>
+    )
 }
 
 export default UploadDoc
