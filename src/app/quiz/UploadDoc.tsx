@@ -19,7 +19,7 @@ const UploadDoc = () => {
                     <div className="absolute m-auto insert-0 flex justify-center items-center">{"Drag a File"}</div> 
                     <input type="file" id="document" className="relative block w-full h-full z-50 opacity-0 " onChange={(e)=>setdocument(e?.target?.files?.[0])} />
                 </label>
-                <Button type="submit" className="mt-10">Generate Quiz!!</Button>
+                <button type="submit" className="mt-10">Generate Quiz!!</button>
             </form>
         </div>
     )
